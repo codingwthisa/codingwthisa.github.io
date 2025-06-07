@@ -52,23 +52,25 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-[#f5efe3] relative border-b border-[#ccb99d] shadow-sm">
+    <header className="bg-[#f5efe3] border-b border-[#ccb99d] shadow-sm w-full">
       {/* Barra superior */}
-      <div className="flex items-center justify-between px-6 py-3">
-        <div className="flex items-center h-full pr-4">
-              <Link to="/" className="flex items-center">
-                <img src={logo} alt="Logo HQ" className="h-16 object-contain" />
-              </Link>
-            </div>
+      <div className="flex items-center justify-between px-4 py-3 gap-2 flex-wrap sm:flex-nowrap">
+        {/* Logo */}
+        <div className="shrink-0">
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Logo HQ" className="h-12 w-auto object-contain" />
+          </Link>
+        </div>
 
-        <div className="flex-1 max-w-2xl mx-6">
+        {/* Búsqueda */}
+        <div className="flex-1 min-w-[200px]">
           <SearchBar />
         </div>
 
-        <div className="flex items-center gap-4 text-[#5a4115]">
+        {/* Íconos */}
+        <div className="flex items-center gap-3 shrink-0">
           <span className="hidden sm:block text-sm">Tiendas Físicas</span>
           <Heart className="cursor-pointer text-[#2d1e0a] hover:text-red-600" />
-
           <div className="relative" ref={menuRef}>
             <User
               className="cursor-pointer text-[#2d1e0a] hover:text-[#1a1208]"
@@ -81,7 +83,6 @@ const Header = () => {
                 }
               }}
             />
-
             {mostrarMenu && usuarioLogueado && (
               <div className="absolute right-0 top-10 bg-white text-[#5A4115] rounded-md shadow-lg z-50 text-sm w-48 animate-fade-in">
                 <button
@@ -117,19 +118,18 @@ const Header = () => {
               </div>
             )}
           </div>
-
           <CartButton count={cantidadCarrito} onClick={() => setOpenCart(true)} />
         </div>
       </div>
 
       {/* Categorías */}
-      <div className="bg-[#5b3f0b] text-white px-6 py-2 flex gap-8 text-sm font-medium">
+      <div className="bg-[#5b3f0b] text-white px-4 py-2 flex gap-6 text-sm font-medium flex-wrap">
         {[{ nombre: 'Ficción', categorias: ficcion }, { nombre: 'No Ficción', categorias: noFiccion }].map((grupo, i) => (
           <div key={i} className="relative group cursor-pointer">
             <div className="flex items-center gap-1 hover:text-yellow-300 transition">
               {grupo.nombre} <ChevronDown size={14} />
             </div>
-            <div className={`absolute left-0 top-full bg-white text-[#5b3f0b] shadow-lg rounded-md p-4 ${grupo.nombre === 'Ficción' ? 'w-[600px]' : 'w-[900px]'} hidden group-hover:flex flex-wrap z-50 transition-all duration-200`}>
+            <div className={`absolute left-0 top-full bg-white text-[#5b3f0b] shadow-lg rounded-md p-4 ${grupo.nombre === 'Ficción' ? 'w-[600px]' : 'w-[900px]'} hidden group-hover:flex flex-wrap z-50`}>
               {Array(3).fill().map((_, colIndex) => (
                 <div key={colIndex} className="w-1/3">
                   <ul className={`space-y-1 text-sm ${colIndex > 0 ? 'mt-8' : ''}`}>
