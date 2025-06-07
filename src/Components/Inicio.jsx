@@ -31,7 +31,7 @@ export default function Inicio() {
   ];
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/libros/disponibles/")
+    axios.get("http://localhost:8000/api/libros/disponibles/") // Cambia la URL si estás en producción
       .then((res) => {
         const formateados = res.data.map(libro => ({
           id: libro.id,
@@ -135,6 +135,53 @@ export default function Inicio() {
               <p className="mt-2 text-sm font-medium">{autor.nombre}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Imagen promocional */}
+      <section className="px-4 sm:px-6 py-12 max-w-6xl mx-auto">
+        <div className="rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
+          <img src="https://dispatch.barnesandnoble.com/content/dam/ccr/homepage/daily/2025/05/20/32339_SkinnyHero8_SummerReading_05_20_25.jpg" alt="Promoción especial" className="w-full h-auto object-cover" />
+        </div>
+      </section>
+
+      {/* Categorías destacadas */}
+      <section className="px-4 sm:px-6 py-12 max-w-6xl mx-auto text-center">
+        <h2 className="text-2xl font-bold mb-6">Categorías destacadas</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          {[
+            { nombre: 'Ficción', icono: '📖' },
+            { nombre: 'No Ficción', icono: '📘' },
+            { nombre: 'Juvenil', icono: '🧒' },
+            { nombre: 'Infantil', icono: '🧸' },
+            { nombre: 'Cómics', icono: '💥' },
+            { nombre: 'Autoayuda', icono: '🧠' },
+            { nombre: 'Historia', icono: '🏛️' },
+            { nombre: 'Ciencia', icono: '🔬' },
+          ].map((categoria, idx) => (
+            <div key={idx} className="flex flex-col items-center transition duration-300 hover:scale-105 hover:shadow-lg">
+              <div className="w-20 h-20 rounded-full bg-white shadow flex items-center justify-center text-3xl sm:w-28 sm:h-28">
+                <span>{categoria.icono}</span>
+              </div>
+              <p className="mt-2 text-sm font-medium">{categoria.nombre}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Mapa de ubicaciones */}
+      <section className="px-4 sm:px-6 py-12 max-w-6xl mx-auto text-center">
+        <h2 className="text-2xl font-bold mb-6">Nuestras ubicaciones en Pereira</h2>
+        <div className="rounded-lg overflow-hidden shadow-md">
+          <iframe
+            title="Mapa ubicaciones HQ Library"
+            src="https://www.google.com/maps/d/u/0/embed?mid=1jv2w-pfklOxGzEWiJvYUT-_oH0rqJuY&ehbc=2E312F"
+            width="100%"
+            height="300"
+            allowFullScreen=""
+            loading="lazy"
+            className="w-full border-none rounded-md"
+          ></iframe>
         </div>
       </section>
     </div>
