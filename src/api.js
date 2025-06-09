@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Crea una instancia de axios con la configuración básica
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api/',  // URL base del backend de Django
+  baseURL: 'http://hqlibrary-backend-production.up.railway.app:8000/api/',  // URL base del backend de Django
   headers: {
     'Content-Type': 'application/json',    // Asegura que las peticiones sean en formato JSON
   },
